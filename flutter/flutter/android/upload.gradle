@@ -1,0 +1,15 @@
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId = 'com.stone.ffmpeg'
+            artifactId = 'ffmpeg-kit'
+            version = '6.0.2'
+            artifact(file('libs/ffmpeg-kit-https-6.0-2.aar'))
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
