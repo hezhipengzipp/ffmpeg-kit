@@ -1,0 +1,31 @@
+
+apply plugin: 'maven-publish'
+
+def ALIYUN_USERNAME = "6718939d77f1c273704e3f7f"
+def ALIYUN_PASSWORD = "0W_[X_fpnEVF"
+
+def isDevelopMode = "true".equalsIgnoreCase(develop_mode)
+def publishingRepo = isDevelopMode ? aliyun_maven_repo_snapshot : aliyun_maven_repo_release
+
+afterEvaluate {
+    publishing {
+        publications {
+            aar(MavenPublication) {
+                groupId = 'com.stone.ffmpeg'
+                artifactId = 'ffmpeg-kit'
+                version = '6.0.2'
+                artifact(file('libs/ffmpeg-kit-https-6.0-2.aar'))
+            }
+        }
+        repositories {
+            maven {
+                name = "aliyun_maven"
+                url = uri("https://packages.aliyun.com/623161cc52a8ac963194f2a3/maven/${publishingRepo}")
+                credentials {
+                    username = ALIYUN_USERNAME
+                    password = ALIYUN_PASSWORD
+                }
+            }
+        }
+    }
+}

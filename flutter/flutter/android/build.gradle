@@ -2,13 +2,20 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        maven {
+            credentials {
+                username "6718939d77f1c273704e3f7f"
+                password "0W_[X_fpnEVF" // Replace with your password
+            }
+            url "https://packages.aliyun.com/623161cc52a8ac963194f2a3/maven/${aliyun_maven_repo_release}"
+        }
     }
 
     dependencies {
         classpath "com.android.tools.build:gradle:7.3.1"
     }
 }
-//apply from: 'upload.gradle'
+apply from: 'maven.gradle'
 rootProject.allprojects {
     repositories {
         google()
